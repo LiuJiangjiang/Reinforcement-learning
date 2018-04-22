@@ -336,16 +336,12 @@ def train(sess, args, actor, critic, actor_noise):
 						i, (ep_ave_max_q / float(j)), float(headway)))	
 
 			s = s2
+			CIPV_speed = CIPV_speed_
+			subject_speed =subject_speed_
+			distance = distance_
 			ep_reward += r
 
 			if terminal:
-				summary_str = sess.run(summary_ops, feed_dict = {
-					summary_vars[0]: ep_reward,
-					summary_vars[1]: ep_ave_max_q / float(j)
-					})
-				writer.add_summary(summary_str, i)
-				writer.flush()
-
 				print('| Reward: {:d} | Episode: {:d} | Qmax: {:.4f} | Headway: {:.4f}'.format(int(ep_reward), \
 						i, (ep_ave_max_q / float(j)), float(headway)))
 		
